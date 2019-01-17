@@ -26,12 +26,52 @@
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
+
+            //ReadInfoFromFile();
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            i++;
-            textBlock_current.Text = i.ToString();
+            string time = "";
+
+            date = date.AddSeconds(1);
+
+            int hh = date.Hour;
+            int mm = date.Minute;
+            int ss = date.Second;
+
+            if (hh < 10)
+            {
+                time += "0" + hh;
+            }
+            else
+            {
+                time += hh;
+            }
+            time += ":";
+
+            //Минуты
+            if (mm < 10)
+            {
+                time += "0" + mm;
+            }
+            else
+            {
+                time += mm;
+            }
+            time += ":";
+
+            //Секунды
+            if (ss < 10)
+            {
+                time += "0" + ss;
+            }
+            else
+            {
+                time += ss;
+            }
+
+            textBlock_current.Text = time;
         }
 
         private void ReadInfoFromFile()
